@@ -15,3 +15,6 @@ NEWSPIDER_MODULE = 'weibo.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'weibo (+http://www.yourdomain.com)'
+
+weibo_username = 'yourname'
+weibo_password = 'yourpasswd'
