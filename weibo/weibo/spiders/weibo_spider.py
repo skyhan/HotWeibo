@@ -1,9 +1,6 @@
 import scrapy
 
-from scrapy.selector import Selector
-from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-from scrapy.contrib.spiders import CrawlSpider, Rule
-from scrapy.http import Request,FormRequest
+from scrapy.http import Request
 
 from ..weibo_login import wblogin
 from ..settings import weibo_username, weibo_password
@@ -16,7 +13,7 @@ class WeiboSpider(scrapy.Spider):
     ]
 
     def start_requests(self):
-        login_cookie = wblogin(settings.weibo_username, settings.weibo_password)
+        login_cookie = wblogin(weibo_username, weibo_password)
         for url in self.start_urls:
             yield Request(url, cookies=login_cookie)
 
