@@ -6,7 +6,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.http import Request,FormRequest
 
 from ..weibo_login import wblogin
-import settings
+from ..settings import weibo_username, weibo_password
 
 class WeiboSpider(scrapy.Spider):
     name = "weibo"
