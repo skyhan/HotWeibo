@@ -1,6 +1,7 @@
 import scrapy
 
 from scrapy.http import Request
+from bs4 import BeautifulSoup
 
 from ..weibo_login import wblogin
 from ..settings import weibo_username, weibo_password
@@ -18,9 +19,18 @@ class WeiboSpider(scrapy.Spider):
             yield Request(url, cookies=login_cookie)
 
     def parse(self, response):
+        soup = BeautifulSoup(response.body)
+        print soup.find_all('div')
+        print soup.find_all('div', class_='WB_info')
+        print soup.prettify()
+        for sel in response.xpath('//div'):
+            #print sel
+            pass
+
         for sel in response.xpath('//div[@class="WB_detail"]'):
             # title = sel.xpath('a/text()').extract()
             # link = sel.xpath('a/@href').extract()
+            print sel
             desc = sel.xpath('/div[@class="WB_text"]/text()').extract()
             print desc
             # print title, link, desc
