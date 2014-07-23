@@ -72,7 +72,8 @@ def wblogin(username, password):
                           resp.content).group(1)
     resp = session.get(login_url)
     login_str = re.match(r'[^{]+({.+?}})', resp.content).group(1)
-    return session.cookies
+    print requests.utils.dict_from_cookiejar(session.cookies)
+    return requests.utils.dict_from_cookiejar(session.cookies)
     # return json.loads(login_str)
 
 
