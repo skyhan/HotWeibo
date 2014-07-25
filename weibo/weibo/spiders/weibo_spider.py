@@ -19,22 +19,27 @@ class WeiboSpider(scrapy.Spider):
             yield Request(url, cookies=login_cookie)
 
     def parse(self, response):
-        soup = BeautifulSoup(response.body)
+        formed_body = self.remove_back_slant(response.body)
+        soup = BeautifulSoup(formed_body)
         print soup.find_all('div')
         print soup.find_all('div', class_='WB_info')
         print soup.prettify()
-        for sel in response.xpath('//div'):
-            #print sel
-            pass
 
-        for sel in response.xpath('//div[@class="WB_detail"]'):
-            # title = sel.xpath('a/text()').extract()
-            # link = sel.xpath('a/@href').extract()
-            print sel
-            desc = sel.xpath('/div[@class="WB_text"]/text()').extract()
-            print desc
-            # print title, link, desc
+        # for sel in response.xpath('//div'):
+        #     #print sel
+        #     pass
+        #
+        # for sel in response.xpath('//div[@class="WB_detail"]'):
+        #     # title = sel.xpath('a/text()').extract()
+        #     # link = sel.xpath('a/@href').extract()
+        #     print sel
+        #     desc = sel.xpath('/div[@class="WB_text"]/text()').extract()
+        #     print desc
+        #     # print title, link, desc
 
         filename = response.url.split("/")[-2]
         with open(filename, 'wb') as f:
             f.write(response.body)
+
+    def remove_back_slant(self, str):
+        return str.replace('\/', '/').replace('\\"', '"')
