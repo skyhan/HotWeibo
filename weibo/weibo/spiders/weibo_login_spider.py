@@ -2,7 +2,7 @@
 import re
 import time
 
-from ..settings import weibo_username, weibo_password
+from ..user_settings import weibo_username, weibo_password
 
 from scrapy.selector import HtmlXPathSelector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor

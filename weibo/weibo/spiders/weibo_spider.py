@@ -4,7 +4,7 @@ from scrapy.http import Request
 from bs4 import BeautifulSoup
 
 from ..weibo_login import wblogin
-from ..settings import weibo_username, weibo_password
+from ..user_settings import weibo_username, weibo_password
 
 class WeiboSpider(scrapy.Spider):
     name = "weibo"
