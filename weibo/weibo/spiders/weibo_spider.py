@@ -37,7 +37,7 @@ class WeiboSpider(scrapy.Spider):
         #     print desc
         #     # print title, link, desc
 
-        filename = response.url.split("/")[-2]
+        filename = 'result/' + response.url.split("/")[-2]
         with open(filename, 'wb') as f:
             f.write(response.body)
 
